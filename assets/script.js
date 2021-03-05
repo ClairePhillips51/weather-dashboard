@@ -3,6 +3,8 @@ let $fiveDayForecast = $("#five-day-forecast");
 let $searchHistory = $("#history");
 
 function currentWeather(cityName){
+    $currentWeather.children().remove();
+
     fetch("http://api.openweathermap.org/data/2.5/weather?q="+cityName+"&APPID=06fdaa97c2a606c5e09a175a60f21d34&units=imperial")
         .then(function (response) {
             return response.json();
@@ -33,12 +35,14 @@ function currentWeather(cityName){
 }
 
 function fiveForecast(cityName){
+    $fiveDayForecast.children().remove();
     fetch("http://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&APPID=06fdaa97c2a606c5e09a175a60f21d34&units=imperial")
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             console.log(data);
+            $("#five-day-header").show();
             let chosenTime = [5, 13, 21, 29, 37];
             for(let i=0; i<chosenTime.length; i++) {
                 // Date
