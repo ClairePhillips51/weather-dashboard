@@ -12,7 +12,7 @@ function currentWeather(cityName){
     $currentWeather.show();
     $currentWeather.children().remove();
 
-    fetch("http://api.openweathermap.org/data/2.5/weather?q="+cityName+"&APPID=06fdaa97c2a606c5e09a175a60f21d34&units=imperial")
+    fetch("https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&APPID=06fdaa97c2a606c5e09a175a60f21d34&units=imperial")
         .then(function (response) {
             return response.json();
         })
@@ -35,7 +35,7 @@ function currentWeather(cityName){
             let date = moment().format("M/D/YYYY");
             //icon wx conditions
             let wxIcon = data["weather"][0]["icon"];
-            wxIcon = "<img src=\"http://openweathermap.org/img/wn/"+wxIcon+"@2x.png\" alt=\"weather icon\">";
+            wxIcon = "<img src=\"https://openweathermap.org/img/wn/"+wxIcon+"@2x.png\" alt=\"weather icon\">";
             //temp
             let temperature = data["main"]["temp"];
             //humidity
@@ -45,7 +45,7 @@ function currentWeather(cityName){
             //uv index
             let lattitude= data["coord"]["lat"];
             let longitude= data["coord"]["lon"];
-            fetch('http://api.openweathermap.org/data/2.5/uvi?lat='+lattitude+'&lon='+longitude+'&appid=06fdaa97c2a606c5e09a175a60f21d34')
+            fetch('https://api.openweathermap.org/data/2.5/uvi?lat='+lattitude+'&lon='+longitude+'&appid=06fdaa97c2a606c5e09a175a60f21d34')
             .then(function (response) {
                 return response.json();
             })
@@ -80,7 +80,7 @@ function currentWeather(cityName){
 function fiveForecast(cityName){
     $("#forecast-container").show();
     $fiveDayForecast.children().remove();
-    fetch("http://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&APPID=06fdaa97c2a606c5e09a175a60f21d34&units=imperial")
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&APPID=06fdaa97c2a606c5e09a175a60f21d34&units=imperial")
         .then(function (response) {
             return response.json();
         })
@@ -101,7 +101,7 @@ function fiveForecast(cityName){
                 date = moment(date, "YYYY-MM-DD HH:mm:ss").format("M/D/YYYY");
                 //icon wx conditions
                 let wxIcon = data["list"][chosenTime]["weather"][0]["icon"];
-                wxIcon = "<img src=\"http://openweathermap.org/img/wn/"+wxIcon+".png\" alt=\"weather icon\">";
+                wxIcon = "<img src=\"https://openweathermap.org/img/wn/"+wxIcon+".png\" alt=\"weather icon\">";
                 //temp
                 let temperature = data["list"][chosenTime]["main"]["temp"];
                 //humidity
