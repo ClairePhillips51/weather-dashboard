@@ -38,6 +38,6 @@ Using multiple api was tricky, especially fiding data for the UV index. I had to
 ## Resources
 * [Local Storage](https://www.w3schools.com/jsref/prop_win_localstorage.asp)
 * [Moment.js Docs](https://momentjs.com/docs/#/displaying/) 
-* [Openweathermap One Call API](hhttps://materializecss.com/feature-discovery.html)
+* [Openweathermap One Call API](https://openweathermap.org/api/one-call-api)
 * [OpenWeathermap Current Weather Data ](https://openweathermap.org/current)
 * [OpenWeathermap 5 Day Weather Forecast ](https://openweathermap.org/forecast5#format) 
