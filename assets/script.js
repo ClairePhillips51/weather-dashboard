@@ -9,6 +9,7 @@ if (searchHistory === null) {
 console.log(searchHistory);
 
 function currentWeather(cityName){
+    $currentWeather.show();
     $currentWeather.children().remove();
 
     fetch("http://api.openweathermap.org/data/2.5/weather?q="+cityName+"&APPID=06fdaa97c2a606c5e09a175a60f21d34&units=imperial")
@@ -17,6 +18,11 @@ function currentWeather(cityName){
         })
         .then(function (data) {
             console.log(data);
+            if (data["cod"] != "200"){
+                $currentWeather.hide();
+                return;
+            }
+
             //city name
             let cityName = data["name"];
             if (!searchHistory.includes(cityName)) {
@@ -72,6 +78,7 @@ function currentWeather(cityName){
 }
 
 function fiveForecast(cityName){
+    $("#forecast-container").show();
     $fiveDayForecast.children().remove();
     fetch("http://api.openweathermap.org/data/2.5/forecast?q="+cityName+"&APPID=06fdaa97c2a606c5e09a175a60f21d34&units=imperial")
         .then(function (response) {
@@ -79,19 +86,26 @@ function fiveForecast(cityName){
         })
         .then(function (data) {
             console.log(data);
+            if (data["cod"] != "200") {
+                $("#forecast-container").hide();
+                $("#five-day-header").hide();
+                return;
+            }
             $("#five-day-header").show();
-            let chosenTime = [3, 11, 19, 27, 35];
-            for(let i=0; i<chosenTime.length; i++) {
+            let chosenTimes = [3, 11, 19, 27, 35];
+            for(let i=0; i<chosenTimes.length; i++) {
+                chosenTime = chosenTimes[i];
                 // Date
-                let date = data["list"][i]["dt_txt"];
+                let date = data["list"][chosenTime]["dt_txt"];
+                console.log(date);
                 date = moment(date, "YYYY-MM-DD HH:mm:ss").format("M/D/YYYY");
                 //icon wx conditions
-                let wxIcon = data["list"][i]["weather"][0]["icon"];
+                let wxIcon = data["list"][chosenTime]["weather"][0]["icon"];
                 wxIcon = "<img src=\"http://openweathermap.org/img/wn/"+wxIcon+".png\" alt=\"weather icon\">";
                 //temp
-                let temperature = data["list"][i]["main"]["temp"];
+                let temperature = data["list"][chosenTime]["main"]["temp"];
                 //humidity
-                let humidity = data["list"][i]["main"]["humidity"];
+                let humidity = data["list"][chosenTime]["main"]["humidity"];
                 $column = $('<div class="col"></div>');
                 $column.append('<h5>'+date+'</h5>');
                 $column.append('<p>'+wxIcon+'</p>');
@@ -108,7 +122,7 @@ function fiveForecast(cityName){
 function updateSearchHistory() {
     for (let i= 0; i< searchHistory.length; i++) {
         cityName = searchHistory[i];
-        $searchHistory.append('<button onClick="historyBtn(\''+cityName+'\')">'+ cityName +'</button>');
+        $searchHistory.append('<button style="display:block; width:100%;" onClick="historyBtn(\''+cityName+'\')">'+ cityName +'</button>');
     }
 
     return;
@@ -123,6 +137,9 @@ function search(){
     // Grab the inner text from that object (JQuery -> val()) and put it in a variable
     let cityName = $searchBar.val();
     console.log(cityName);
+    if (cityName === "") {
+        return;
+    }
     // pass this variable to two functions, one that fetches current weather and one that fetches 5 day forecast
     currentWeather(cityName);
     fiveForecast(cityName);

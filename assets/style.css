@@ -1,0 +1,60 @@
+h1{
+    text-align: center;
+    color:lightgray;
+    background-color: rgb(59, 59, 128);
+    font-size: 4em;
+    padding: 15px 0px;
+}
+
+#search-area {
+    padding-bottom: 7px;
+}
+
+#search-input {
+    width: 90%;
+}
+
+#search-btn {
+    border: none;
+    background-color: white;
+    width: 5%;
+}
+
+#search-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+#history button {
+    border-radius: 5px;
+    border-color: lightgray;
+    background-color: white; 
+    margin-bottom: 2px;
+}
+
+#current-weather {
+    display: none;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 0px 20px 20px 20px;
+    margin-bottom: 30px;
+}
+
+#forecast-container {
+    display: none;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+}
+
+#five-day-header {
+    margin-bottom: 15px;
+}
+
+#five-day-forecast div {
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    margin: 2px;
+    background-color: rgb(90, 90, 122);
+    color: lightgray;
+}
