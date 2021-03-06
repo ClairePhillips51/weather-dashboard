@@ -28,7 +28,7 @@ Once a city is picked or typed in the weather data will show up on to the right 
 
 The uv index is also color coded to show if the uv index is low. moderate, high, very high, or extreme.
 
-![UV Index scale](picutres/UV-Index.jpg)
+![UV Index scale](pictures/UV-Index.jpg)
 
 Refreshing the page will clear the weather data, but the list of city names will remain. 
 
