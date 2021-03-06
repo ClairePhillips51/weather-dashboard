@@ -1,10 +1,10 @@
 # Weather Dashboard
-Link: [Weather Dashboard](https://clairephillips51.github.io/work-day-scheduler/)
+Link: [Weather Dashboard](https://clairephillips51.github.io/weather-dashboard/)
 
 ## Summary
-Using javascript, jQuery, jQuery UI, and bootstrap to make a day planner that will allow you to type in and save tasks for a certain hour of the work day. The sheculer will also update thoughout the day and is color coded so that the current hour is red, any past hour is gray, and any future hour is green.  Any events typed into the scheculer are saved to local storage so reloading the page will keep your tasks in place. 
+Making a weather dashboard that displays current weather conditions and a five-day forecast for a given city. Any typed in city is saved to a list that when clikced that citis weather can be viewed.
 
-![Working Day Planner](Pictures/finished-planner.png)
+![Working Weather Dashboard](pictures/wx-dash.png)
 
 ## Table of Contents
 1. [Process](#process)
@@ -13,34 +13,31 @@ Using javascript, jQuery, jQuery UI, and bootstrap to make a day planner that wi
 4. [Resources](#resources)
 
 ## Process
-This project started with a skeleton html file and a complete css file. I had to add a javascript file. I also added a jQuery UI `<link>` and `<script>` to the html file so that I could access jQuery UI elements. 
+Using fetch to get data from [Openweathermap.org](https://openweathermap.org/api) API to create a weather dahsboard for a given city that the user types in. Three api's were used which are listed under [Resources](#resources). Once the data was retrived certain current weather condtions, and a five day forecast would be displayed. The city name would also be saved to a list under the search bar. 
 
-Most of the coding was setting up the script.js file. I fist made a for loop that created 9 rows and 3 columns which I then appended to the container `<div>` from the html file to set up the main structure of the planner. The for loop allowed me to make 27 elemnets without having to type it all out in the htmlf file. 
-
-![Created and appended divs](Pictures/appendedItems.png)
-
-Next was setting up moment.js to show the current date in the jumbotron. That was simpling setting a variable called "currentDay" and having it equal to moment() then setting the format to ('dddd MMMM Do'). Moment.js was also used to determine whether the hour in the planner was past, present, or future when compared to the current hour of the day. 
-
-jQuery UI was used to create a save button in the last column. The save button was turned into an eventlistener so that when clikced the time and the text in the textarea would be saved to local storage. 
+I stated with the html file to set up the placement of certain objects on the page. I used bootsrap to help with a basic grid system that had two columns, each column contains two `<div>`s from there each `<div>`ccontains one of the main pieces of the webpage: the search bar, city list, current weather data, and 5 day forecast.  I then wrote the javascript file to get the data using fetch and display the desired data on the webpage using the then promise.  Css was the final piece used to make the dashboard look nice. 
 
 ## Usage
-The work scheduler is set up to follow the current hour of the work day. It starts at 9AM and goes to 5PM. The sheculer will update thoughout the day and is color coded so that the current hour is red, any past hour is gray, and any future hour will be green.  
+The website opens to a fairly bare page with a search bar that says "Enter a city". The user will type in what ever city they want to see weather information for. It will show the first city of that name it can find so specifying a certain state or country may be necessary.
 
-The second coloumn next to the hour is a text box where you can type in a reminder, an event, task, ect. Once you hit the save button in the last column any events typed into the scheculer are saved to local storage so reloading the page will keep your tasks in place. 
+![Type in the city you want](pictures/city-search-bar.png)
 
-![Local storage in action](Pictures/localStorage.png)
+Using local storage the city name will saved to a list under the search bar. Each city name is turned into a button so clikcing on the city will bring up the weather data for that location. 
 
-The planner is set up so that the next day local storage is re-set and any events from the precvious day will be cleared. 
+Once a city is picked or typed in the weather data will show up on to the right of the search bar. There are two sections the first is current weather which shows: the date, a weather icon showing the current conditions, the temperature, the humidity, the wind speed, and the UV index. Under current weather is a five day forecast that displays: the date, a weather icon showing the days condition, the temperature, and the humidity.
+
+The uv index is also color coded to show if the uv index is low. moderate, high, very high, or extreme.
+
+![UV Index scale](picutres/UV-Index.jpg)
+
+Refreshing the page will clear the weather data, but the list of city names will remain. 
 
 ## What I Learned
-At first I thought this project would be straight forward but mainpulating the moment.js methods was more challenging than anticipated. I eventually set up an if, else if, else statement that determined if the hour was past, present, or future so it could be colored correctly. 
-
-Setting up the for loop so I could append all the needed elements for the rows and coloumns without actually having to type it out saved a ton of time and having the css already set up was a big help in defining/naming elements. 
-
-One thing I did struggle with was getting the save button to be a bigger size. I couldn't seem to manipulte the jQuery UI icon I used so I left it alone. 
+Using multiple api was tricky, especially fiding data for the UV index. I had to make what felt like nested fetch calls so that the uv index data would show up with the other current conditions. I only used one html file for my sake to make it easier for myself rather than using location replace with a seperate html file for the weahter data elements. 
 
 ## Resources
 * [Local Storage](https://www.w3schools.com/jsref/prop_win_localstorage.asp)
-* [Bootstrap grid system](https://getbootstrap.com/docs/4.5/layout/grid/)
-* [jQuery UI save button Icon Code](https://jqueryui.com/button/#icons)
 * [Moment.js Docs](https://momentjs.com/docs/#/displaying/) 
+* [Openweathermap One Call API](hhttps://materializecss.com/feature-discovery.html)
+* [OpenWeathermap Current Weather Data ](https://openweathermap.org/current)
+* [OpenWeathermap 5 Day Weather Forecast ](https://openweathermap.org/forecast5#format) 
