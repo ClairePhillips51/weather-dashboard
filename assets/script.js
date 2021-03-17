@@ -158,3 +158,5 @@ updateSearchHistory();
 
 let $searchBtn = $("#search-btn");
 $searchBtn.on("click", search);
+
+historyBtn("Detroit");
